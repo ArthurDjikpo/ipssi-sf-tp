@@ -33,7 +33,7 @@ class Article
     private $created;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Comment", mappedBy="article", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="article", cascade={"persist", "remove"})
      */
     private $comment;
 

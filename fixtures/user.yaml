@@ -2,6 +2,7 @@ App\Entity\User:
   the-user:
     __construct: false
     email: 'user@user.fr'
+    nickname: 'user'
     roles: '[ROLE_USER]'
     password: '\$2y\$13\$A6KTrpbeHNkOKoRdrFjbOOwLci1EeHU2gP/mVet3M7pXsNwlIyeyu'
     #username: 'user'
@@ -9,6 +10,7 @@ App\Entity\User:
   the-admin:
     __construct: false
     email: 'admin@admin.fr'
+    nickname: 'admin'
     roles: '[ROLE_USER]'
     password: '\$2y\$13\$e4.oQqXWfn/B5amI0oMyye4g2PqVQM97hFjTrEQ212xT9CdJ9rHaq'
     #username: 'admin'
@@ -16,6 +18,7 @@ App\Entity\User:
   user-{1..100}:
     __construct: false
     email (unique): '<email()>'
+    nickname: '<userName()>'
     roles: '[ROLE_USER]'
     password: '\$2y\$13\$R5t.U5SBSCJVmjGxGb5tYOV0SqmJT8M9W9pCkE9QWn/agtuX8An2K'
     #password: '$2y$13$B9nLspAsx44zZpYxMz4LGe8qheDB7yno4xxk53wJMp3L.8Y7r8ZPW'

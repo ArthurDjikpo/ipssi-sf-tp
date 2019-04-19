@@ -1,7 +1,7 @@
 App\Entity\Comment:
   comment-{1..200}:
     __construct: false
-    content: '<paragraph($nbSentences = 3, $variableNbSentences = true)>'
+    content: '<paragraph(3, true)>'
     created: "<dateTimeBetween('1 year ago', 'now')>"
     author: '@user-<numberBetween(1,100)>'
     article: "@article-<numberBetween(1,50)>"

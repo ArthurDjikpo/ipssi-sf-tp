@@ -1,6 +1,6 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+index:
+  path: /
+  controller: App\Controller\IndexController::index
 blog:
   resource: 'routes/blog.yaml'
   prefix: '/blog'

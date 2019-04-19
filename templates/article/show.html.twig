@@ -7,26 +7,22 @@
 
     <table class="table">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ article.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ article.title }}</td>
-            </tr>
-            <tr>
-                <th>Content</th>
-                <td>{{ article.content }}</td>
-            </tr>
-            <tr>
-                <th>Author</th>
-                <td>{{ article.author }}</td>
-            </tr>
-            <tr>
-                <th>Created</th>
-                <td>{{ article.created ? article.created|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
+        <tr>
+            <th>Title</th>
+            <td>{{ article.title }}</td>
+        </tr>
+        <tr>
+            <th>Content</th>
+            <td>{{ article.content }}</td>
+        </tr>
+        <tr>
+            <th>Author</th>
+            <td>{{ article.title }}</td>
+        </tr>
+        <tr>
+            <th>Created</th>
+            <td>{{ article.created ? article.created|date('Y-m-d H:i:s') : '' }}</td>
+        </tr>
         </tbody>
     </table>
 
