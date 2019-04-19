@@ -12,15 +12,16 @@ class partyResultController extends AbstractController
 
     public function getMyBet(){
 
-        $doctrine = $this->getDoctrine();
+       /* $doctrine = $this->getDoctrine();
 
         $betRepository= $doctrine->getRepositority(BetRepository::class);
 
-        $playerBet= $betRepository->getPlayerBet();
+        $playerBet= $betRepository->getPlayerBet();*/
 
-        return $this->render('playerResult/playerResult.html.twig', [
-        'playerBet'=> $playerBet
-        ]);
+        return $this->render('playerResult/playerResult.html.twig'
+
+            //,['playerBet'=> $playerBet ]
+        );
 
 
 
