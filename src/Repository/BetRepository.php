@@ -22,7 +22,7 @@ class BetRepository extends ServiceEntityRepository
     public function getPlayerBet(): array
     {
         $querybuilder = $this->createQueryBuilder('playerBet')
-            ->select('id','playerName', 'betCase', 'colorCase', 'money');
+            ->select('id', 'playerName', 'betCase', 'colorCase', 'money');
 
         return $querybuilder->getQuery()->getResult();
     }

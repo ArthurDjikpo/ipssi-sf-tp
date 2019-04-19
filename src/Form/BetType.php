@@ -13,22 +13,22 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class BetType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder,  array  $options)
+    public function buildForm(FormBuilderInterface $builder, array  $options)
     {
         $builder
-            ->add('playerName', TextType::class,[
+            ->add('playerName', TextType::class, [
             'label'=> 'Nom Joueur',])
 
 
-            ->add('betCase', TextType::class,[
+            ->add('betCase', TextType::class, [
                 'label'=> 'Nombre misé',])
 
-            ->add('colorCase', TextType::class,[
+            ->add('colorCase', TextType::class, [
                 'label'=> 'couleur misé',
 
             ])
 
-            ->add('money', TextType::class,[
+            ->add('money', TextType::class, [
                 'label' => 'Montant misé',
 
 
@@ -42,7 +42,5 @@ class BetType extends AbstractType
         $resolver->setDefaults([
             'data_class' => Bet::class,
         ]);
-
-
     }
 }

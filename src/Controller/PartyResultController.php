@@ -3,14 +3,14 @@
 
 namespace App\Controller;
 
-
 use App\Repository\BetRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class partyResultController extends AbstractController
 {
 
-    public function getMyBet(){
+    public function getMyBet()
+    {
 
        /* $doctrine = $this->getDoctrine();
 
@@ -18,18 +18,14 @@ class partyResultController extends AbstractController
 
         $playerBet= $betRepository->getPlayerBet();*/
 
-        return $this->render('playerResult/playerResult.html.twig'
+        return $this->render('playerResult/playerResult.html.twig');
 
             //,['playerBet'=> $playerBet ]
-        );
-
-
-
     }
 
-    public function startGame(){
+    public function startGame()
+    {
 
         return $this->render('partyResult/partyResult.html.twig');
     }
 }
-

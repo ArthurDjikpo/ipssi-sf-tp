@@ -19,7 +19,7 @@ class Comment
 
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="string", length=255)
      */
     private $content;
 
@@ -31,7 +31,7 @@ class Comment
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Article", inversedBy="comment", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\Article", inversedBy="comment", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $article;
