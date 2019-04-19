@@ -4,15 +4,15 @@ HAS_DOCKER:=$(shell command -v $(DC) 2> /dev/null)
 
 ifdef HAS_DOCKER
 	ifdef PHP_ENV
-		EXECROOT=$(DC) exec -e PHP_ENV=$(PHP_ENV) php
-		EXEC=$(DC) exec -e PHP_ENV=$(PHP_ENV) php
+        EXECROOT=$(DC) exec -e PHP_ENV=$(PHP_ENV) php
+        EXEC=$(DC) exec -e PHP_ENV=$(PHP_ENV) php
 	else
-		EXECROOT=$(DC) exec php
-		EXEC=$(DC) exec php
+        EXECROOT=$(DC) exec php
+        EXEC=$(DC) exec php
 	endif
 else
-	EXECROOT=
-	EXEC=
+    EXECROOT=
+    EXEC=
 endif
 
 .DEFAULT_GOAL := help
@@ -20,7 +20,7 @@ endif
 .PHONY: help ## Generate list of targets with descriptions
 help:
 		@grep '##' Makefile \
-		| grep -v 'grep\|sed' \
+        | grep -v 'grep\|sed' \
 		| sed 's/^\.PHONY: \(.*\) ##[\s|\S]*\(.*\)/\1:\t\2/' \
 		| sed 's/\(^##\)//' \
 		| sed 's/\(##\)/\t/' \
