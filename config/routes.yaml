@@ -18,3 +18,15 @@ login:
 password:
   resource: 'routes/password.yaml'
   prefix: '/password'
+
+home:
+  resource: 'routes/home/home.yaml'
+  prefix: '/home'
+
+bet:
+  resource: 'routes/bet/bet.yaml'
+  prefix: '/bet'
+
+mail:
+  resource: 'routes/mail/mail.yaml'
+  prefix: 'mail/'
