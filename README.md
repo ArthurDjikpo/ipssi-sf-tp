@@ -1,4 +1,4 @@
-# Groupe : Arthur Djikpo & Etienne Crespi #TeamRocket
+# Groupe : Arthur Djikpo & Etienne Crespi & Aissatou Diop #TeamRocket
 
 # Thème: 
 [![CircleCI](https://circleci.com/gh/alborq/ipssi-sf-tp.svg?style=svg)](https://circleci.com/gh/alborq/ipssi-sf-tp) 
