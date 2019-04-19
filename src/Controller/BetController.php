@@ -5,6 +5,7 @@ namespace App\Controller;
 
 
 use App\Form\BetType;
+use App\Repository\BetRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -34,18 +35,6 @@ class BetController extends AbstractController
         ]);
     }
 
-    public function getMyBet(){
 
-        $doctrine = $this->getDoctrine();
-
-        $betRepository= $doctrine->getRepositority(Bet::class);
-
-        $playerBet= $betRepository->getPlayerBet();
-
-        return $this->render('bet/bet.html.twig');
-
-
-
-    }
 
 }

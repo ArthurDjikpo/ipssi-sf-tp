@@ -27,3 +27,6 @@ mail:
   resource: 'routes/mail/mail.yaml'
   prefix: 'mail/'
 
+partyResult:
+  resource: 'routes/partyResult/partyResult.yaml'
+  prefix: 'partyResult'

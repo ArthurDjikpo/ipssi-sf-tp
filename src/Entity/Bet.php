@@ -17,7 +17,7 @@ class Bet
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\OneToOne(targetEntity="App\Entity\User", cascade={"persist"})
      */
     private $playerName;
 
