@@ -45,7 +45,6 @@ class Comment
         return $this->id;
     }
 
-
     public function getContent(): ?string
     {
         return $this->content;
@@ -54,7 +53,6 @@ class Comment
     public function setContent(string $content): self
     {
         $this->content = $content;
-
         return $this;
     }
 
@@ -67,7 +65,6 @@ class Comment
     public function setCreated(\DateTimeInterface $created): self
     {
         $this->created = $created;
-
         return $this;
     }
 
@@ -80,7 +77,6 @@ class Comment
     public function setArticle(Article $article): self
     {
         $this->article = $article;
-
         return $this;
     }
 
@@ -93,7 +89,6 @@ class Comment
     public function setAuthor(?User $author): self
     {
         $this->author = $author;
-
         return $this;
     }
 

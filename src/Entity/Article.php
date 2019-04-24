@@ -50,7 +50,6 @@ class Article
         return $this->id;
     }
 
-
     public function getTitle(): ?string
     {
         return $this->title;
@@ -62,7 +61,6 @@ class Article
 
         return $this;
     }
-
 
     public function getContent(): ?string
     {
@@ -85,7 +83,6 @@ class Article
     public function setCreated(\DateTimeInterface $created): self
     {
         $this->created = $created;
-
         return $this;
     }
 
@@ -107,7 +104,6 @@ class Article
         return $this;
     }
 
-
     public function getAuthor(): ?User
     {
         return $this->author;
@@ -124,4 +120,5 @@ class Article
     {
         return $this->getTitle();
     }
+
 }

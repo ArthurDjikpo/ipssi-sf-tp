@@ -37,7 +37,8 @@ start: docker-compose.override.yml
 	$(DC) up -d
 	$(EXEC) composer install
 	$(EXEC) $(CONSOLE) doctrine:database:create --if-not-exists
-	$(EXEC) $(CONSOLE) doctrine:migrations:migrate
+	$(EXEC) $(CONSOLE) doctrine:schema:update --force
+	$(EXEC) $(CONSOLE) make:migration
 	$(EXEC) $(CONSOLE) hautelook:fixtures:load -q
 
 .PHONY: stop ## stop the project
@@ -52,11 +53,15 @@ exec:
 test:
 	$(EXEC) vendor/bin/phpcs src
 	$(EXEC) vendor/bin/phpstan analyse --level 6 src
+
+
+.PHONY: testF ## Start an analyze of the code and return a checkup
+testF:
 	$(EXEC) vendor/bin/phpcbf src
 
 ##
 ## Dependencies Files
 ##---------------------------------------------------------------------------
 
-docker-compose.override.yml: docker-compose.override.yml
-	$(RUN) cp docker-compose.override.yml docker-compose.override.yml
+docker-compose.override.yml: docker-compose.override.yml.dist
+	$(RUN) cp docker-compose.override.yml.dist docker-compose.override.yml

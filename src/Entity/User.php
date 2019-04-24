@@ -12,34 +12,35 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class User implements UserInterface
 {
-    /**
-     * @var string le token qui servira lors de l'oubli de mot de passe
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    protected $resetToken;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
     private $id;
+
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      */
     private $email;
+
     /**
      * @ORM\Column(type="json")
      */
     private $roles = [];
+
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
      */
     private $password;
+
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Article", mappedBy="author")
      */
     private $articles;
+
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="author")
      */
@@ -48,26 +49,35 @@ class User implements UserInterface
      * @ORM\Column(type = "string", length = 255)
      */
     private $nickname;
+
     /**
      * @ORM\Column(type="boolean")
      */
     private $isCertified = false;
+
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $certifiedCode = null;
 
-    public function __construct()
-    {
-        $this->articles = new ArrayCollection();
-        $this->comments = new ArrayCollection();
-    }
+
+    /**
+     * @var string le token qui servira lors de l'oubli de mot de passe
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    protected $resetToken;
+
+    /**
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
+     */
+
 
     public function getId(): ?int
     {
         return $this->id;
     }
-
 
     public function getEmail(): ?string
     {
@@ -77,7 +87,6 @@ class User implements UserInterface
     public function setEmail(string $email): self
     {
         $this->email = $email;
-
         return $this;
     }
 
@@ -101,16 +110,15 @@ class User implements UserInterface
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
-
         return array_unique($roles);
     }
 
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
-
         return $this;
     }
+
 
 
     /**
@@ -124,19 +132,21 @@ class User implements UserInterface
     public function setPassword(string $password): self
     {
         $this->password = $password;
-
         return $this;
     }
 
 
     /**
-     * @see UserInterface
+     * Returns the salt that was originally used to encode the password.
+     *
+     * This can return null if the password was not encoded using a salt.
+     *
+     * @return string|null The salt
      */
     public function getSalt()
     {
-        // not needed when using the "bcrypt" algorithm in security.yaml
+        // TODO: Implement getSalt() method.
     }
-
 
     /**
      * @see UserInterface
@@ -164,7 +174,6 @@ class User implements UserInterface
         }
     }
 
-
     public function getNickname(): ?string
     {
         return $this->nickname;
@@ -173,8 +182,6 @@ class User implements UserInterface
     public function setNickname(string $nickname): self
     {
         $this->nickname = $nickname;
-
-        return $this;
     }
 
 
@@ -231,7 +238,6 @@ class User implements UserInterface
 
         return $this;
     }
-
 
     public function getCertifiedCode(): ?string
     {

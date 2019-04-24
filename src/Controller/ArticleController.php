@@ -23,10 +23,10 @@ class ArticleController extends AbstractController
         /** Ds un ctrller */
         $doctrine = $this->getDoctrine();
 
-        /**@var  ArticleRepository $repository */
+        /**@var  ArticleRepository $articleRepository */
         $articleRepository = $doctrine->getRepository(Article::class);
 
-        /** Recupère tous les objets de la bdd  */
+
         $art = $articleRepository->findAll();
         $listArticle = $articleRepository->listArticle();
 
