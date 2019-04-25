@@ -31,13 +31,8 @@ class ArticleController extends AbstractController
         $listArticle = $articleRepository->listArticle();
 
         return $this->render('article/index.html.twig', [
-            'article' => $art,
-            'articles' => $listArticle,
+            'articles' => $articleRepository->findAll(),
         ]);
-        /* return $this->render('article/index.html.twig', [
-           'articles' => $articleRepository->findAll(),
-          'articles' => $articleRepository->findOneBy(['id' => 1]),
-         ]);*/
     }
 
     /**

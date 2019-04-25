@@ -1,6 +1,6 @@
-index:
-  path: /
-  controller: App\Controller\IndexController::index
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
 blog:
   resource: 'routes/blog.yaml'
   prefix: '/blog'
@@ -18,3 +18,15 @@ login:
 password:
   resource: 'routes/password.yaml'
   prefix: '/password'
+
+bet:
+  resource: 'routes/bet/bet.yaml'
+  prefix: '/bet'
+
+mail:
+  resource: 'routes/mail/mail.yaml'
+  prefix: 'mail/'
+
+partyResult:
+  resource: 'routes/partyResult/partyResult.yaml'
+  prefix: 'partyResult'

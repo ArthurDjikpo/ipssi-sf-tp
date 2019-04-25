@@ -1,0 +1,20 @@
+ {% extends 'base.html.twig' %}
+ {% block body %}
+
+  {% if isOk %}
+  <h2>votre pari a bien été. Cliquez  sur le bouton en dessous pour lancer le jeu et voir les résultats  <a class="btn btn-warning btn-lg" href="/partyResult" role="button">C'est party !</a> </h2>
+
+
+  {% else %}
+
+ <h1>{{ "Faites vos jeux !" }}</h1>
+
+  {{ form_start(BetForm) }}
+  {{ form_rest(BetForm) }}
+  <button type="submit" class="btn btn-outline-info">Valider mon pari</button>
+  {{ form_end(BetForm) }}
+
+  {% endif %}
+
+
+ {% endblock %}

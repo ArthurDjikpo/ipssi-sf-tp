@@ -14,7 +14,10 @@ class ArticleType extends AbstractType
         $builder
             ->add('title')
             ->add('content')
-            ->add('author');
+            ->add('author')
+            ->add('created')
+            ->add('comment')
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)

@@ -1,0 +1,3 @@
+partyResult:
+  path: /
+  controller: App\Controller\partyResultController::startGame
