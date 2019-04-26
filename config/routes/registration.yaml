@@ -1,0 +1,7 @@
+registration:
+  path: /
+  controller: App\Controller\SecurityController::register
+
+confirm:
+  path: /confirm/{certification}
+  controller: App\Controller\SecurityController::confirm

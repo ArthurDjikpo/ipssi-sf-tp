@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% set title = 'Validation de votre compte' %}
+
+{% block body %}
+  <h3 style="font-size: 30px; color: darkblue;">Bonjour {{ nickname }} !</h3>
+
+  <div>
+    <font style="color: #333333;">
+      Bienvenue sur BetRocket, 1er site de paris en ligne !<br/>
+      Pour acceder au site, veuillez cliquer sur le bouton ci-dessous :<br/>
+    </font>
+  </div>
+
+  <br/><hr><br/>
+
+  <a href="{{ url('confirm', {certification: certification}) }}" style="display: inline-block; background-color: darkblue; color: white; padding: 10px 20px; text-decoration: none;">Valider mon compte</a>.<br/><br/>
+
+  <div>
+    <font style="color: #333333;">
+      Merci et bon jeu !<br/><br/>
+      <span style="color: orangered; font-weight: bold;">~ BetRocket Team ~</span>
+    </font>
+  </div>
+
+{% endblock %}

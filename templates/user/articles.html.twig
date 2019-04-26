@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RocketBet | Mes articles{% endblock %}
+
+{% block body %}
+
+  <div class="row">
+    <div class="col-md-12 article-nav">
+      <a href="{{ url('index') }}" class="retour-nav"><i class="fas fa-arrow-left"></i>&nbsp;Retour</a>
+      <a href="{{ url('new') }}" class="btn btn-success float-right"><i class="fas fa-plus"></i>&nbsp;Créer un article</a>
+    </div>
+  </div>
+
+  <div class="row article-list article-back">
+
+    {% for article in articles %}
+
+      <div class="col-md-4 article-elem">
+        <div class="back">
+          <div class="row">
+            <div class="col-md-12">
+              <a href="{{ url('article', { 'id': article.id }) }}" class="picsize">
+                <img src="http://img.over-blog-kiwi.com/1/10/82/36/20190102/ob_216360_la-beaute-est-partout-dans-la-nature.jpg" class="dev">
+              </a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <a href="{{ url('article', { 'id': article.id }) }}">
+                <span class="article-title">{{ article.title }}</span>
+              </a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <span>
+{#                <a href="{{ url('profile', { 'id': article.author.id } ) }}" class="article-author">{{ article.author.nickname }}</a>#}
+                <a href="#" class="article-author">{{ article.author.nickname }}</a>
+                - {{ article.created ? article.created|date('d/m/Y') : '' }}
+              </span>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-md-12 desc">
+              <p>{{ article.content|slice(0, 100) }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    {% else %}
+
+      <div class="col-md-12">
+        <div class="alert alert-dismissible alert-info">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <i class="fas fa-info-circle"></i>&nbsp;
+          <strong>Vous n'avez pas encore créé d'article, lancez-vous !&nbsp;
+            <a href="{{ url('new') }}">Ecrire un article&nbsp;<i class="fas fa-pen"></i></a>
+          </strong>
+        </div>
+      </div>
+
+    {% endfor %}
+
+  </div>
+
+{% endblock %}

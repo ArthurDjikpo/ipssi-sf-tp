@@ -1,0 +1,7 @@
+App\Entity\Article:
+  article-{1..50}:
+    __construct: false
+    title (unique): '<word()>'
+    content: '<paragraph(3, true)>'
+    created: "<dateTimeBetween('1 year ago', 'now')>"
+    author: '@user-<numberBetween(1,100)>'

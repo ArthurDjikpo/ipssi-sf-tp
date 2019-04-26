@@ -1,0 +1,5 @@
+censor:
+  path: censor/{id}
+  controller: App\Controller\CommentController::censor
+  requirements:
+    id: \d+

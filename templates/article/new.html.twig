@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Rocket Bet | Nouveau{% endblock %}
+
+{% block body %}
+
+  <div class="row">
+    <div class="col-md-12 article-nav">
+      <a href="{{ url('index') }}" class="retour-nav"><i class="fas fa-arrow-left"></i>&nbsp;Retour</a>
+    </div>
+  </div>
+
+  <div class="row article-new">
+    <div class="col-md-12">
+
+      {{ include('article/_form.html.twig', {'button_label': 'Save'}) }}
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,17 +1,14 @@
-USERID=$(shell id -u)
-GROUPID=$(shell id -g)
-
-CONSOLE=php bin/console
+CONSOLE=bin/console
 DC=docker-compose
 HAS_DOCKER:=$(shell command -v $(DC) 2> /dev/null)
 
 ifdef HAS_DOCKER
-  ifdef PHP_ENV
-    EXECROOT=$(DC) exec -e PHP_ENV=$(PHP_ENV) php
-    EXEC=$(DC) exec -e PHP_ENV=$(PHP_ENV) -u $(USERID):$(GROUPID) php
+	ifdef PHP_ENV
+		EXECROOT=$(DC) exec -e PHP_ENV=$(PHP_ENV) php
+		EXEC=$(DC) exec -e PHP_ENV=$(PHP_ENV) php
 	else
-	  EXECROOT=$(DC) exec php
-	  EXEC=$(DC) exec -u $(USERID):$(GROUPID) php
+		EXECROOT=$(DC) exec php
+		EXEC=$(DC) exec php
 	endif
 else
 	EXECROOT=
@@ -20,11 +17,11 @@ endif
 
 .DEFAULT_GOAL := help
 
-.TEAMROCKET: help ## Generate list of targets with descriptions
+.PHONY: help ## Generate list of targets with descriptions
 help:
 		@grep '##' Makefile \
 		| grep -v 'grep\|sed' \
-		| sed 's/^\.TEAMROCKET: \(.*\) ##[\s|\S]*\(.*\)/\1:\t\2/' \
+		| sed 's/^\.PHONY: \(.*\) ##[\s|\S]*\(.*\)/\1:\t\2/' \
 		| sed 's/\(^##\)//' \
 		| sed 's/\(##\)/\t/' \
 		| expand -t14
@@ -33,23 +30,38 @@ help:
 ## Project setup & day to day shortcuts
 ##---------------------------------------------------------------------------
 
-.TEAMROCKET: start ## Start the project (Install in first place)
+.PHONY: start ## Start the project (Install in first place)
 start: docker-compose.override.yml
 	$(DC) pull || true
 	$(DC) build
 	$(DC) up -d
+	$(EXEC) composer install
+	$(EXEC) $(CONSOLE) doctrine:database:create --if-not-exists
+	$(EXEC) $(CONSOLE) doctrine:schema:update --force
+	$(EXEC) $(CONSOLE) make:migration
+	$(EXEC) $(CONSOLE) hautelook:fixtures:load -q
 
-.TEAMROCKET: stop ## stop the project
+.PHONY: stop ## stop the project
 stop:
 	$(DC) down
 
-.TEAMROCKET: exec ## Run bash in the php container
+.PHONY: exec ## Run bash in the php container
 exec:
 	$(EXEC) /bin/bash
+
+.PHONY: test ## Start an analyze of the code and return a checkup
+test:
+	$(EXEC) vendor/bin/phpcs src
+	$(EXEC) vendor/bin/phpstan analyse --level 6 src
+
+
+.PHONY: testF ## Start an analyze of the code and return a checkup
+testF:
+	$(EXEC) vendor/bin/phpcbf src
 
 ##
 ## Dependencies Files
 ##---------------------------------------------------------------------------
 
-docker-compose.override.yml: docker-compose.override.yml
-	$(RUN) cp docker-compose.override.yml docker-compose.override.yml
+docker-compose.override.yml: docker-compose.override.yml.dist
+	$(RUN) cp docker-compose.override.yml.dist docker-compose.override.yml

@@ -1,0 +1,33 @@
+<div class="article-edit">
+  <span class="article-ti-tle">{{ formname }}</span>
+  <hr class="hr-light">
+
+  {{ form_start(form) }}
+
+    <div class="form-group">
+      <label for="title">Title :</label>
+      {{ form_row(form.title, {
+        'label': false,
+        'attr': {
+          'class': 'form-control',
+        }
+      }) }}
+    </div>
+
+    <div class="form-group">
+      <label for="title">Contenu :</label>
+      {{ form_row(form.content, {
+        'label': false,
+        'attr': {
+          'class': 'form-control',
+        }
+      }) }}
+    </div>
+
+    <button class="btn btn-success float-left article-edit-btn">
+      <i class="fas fa-check"></i>&nbsp;{{ 'Appliquer'|default('Save') }}
+    </button>
+
+  {{ form_end(form) }}
+
+</div>

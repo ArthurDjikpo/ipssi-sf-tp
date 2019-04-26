@@ -1,0 +1,143 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Article{% endblock %}
+
+{% block body %}
+
+  <div class="row">
+    <div class="col-md-12 article-nav">
+      <a href="{{ url('index') }}" class="retour-nav"><i class="fas fa-arrow-left"></i>&nbsp;Retour</a>
+
+        {% if app.user != null and is_granted('ROLE_ADMIN') %}
+
+          {{ include('article/_delete_form.html.twig') }}
+
+        {% endif %}
+
+        {% if is_granted('ROLE_ADMIN') and app.user != null and article.author.id == app.user.id %}
+
+          <a href="{{ url('edit', { 'id': article.id } ) }}" class="btn btn-info float-right"><i class="fas fa-pen"></i>&nbsp;Editer cet article</a>
+
+        {% endif %}
+
+    </div>
+  </div>
+
+  <div class="row article-show">
+    <div class="col-md-12 article-back">
+      <div class="row">
+        <div class="col-md-12">
+          <span class="article-title">{{ article.title }}</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <span>
+            Le {{ article.created ? article.created|date('d/m/Y') : '' }} par
+            <a href="#" class="article-author">{{ article.author.nickname }}</a>
+          </span>
+        </div>
+      </div>
+      <hr class="hr-light">
+      <div class="row">
+        <div class="col-md-12">
+          <p>{{ article.content }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12 article-back">
+      <div class="row">
+        <div class="col-md-12">
+          <span class="article-title">Poster un commentaire</span>
+        </div>
+      </div>
+      <hr class="hr-light">
+      <div class="row">
+        <div class="col-md-12">
+
+          {% if app.user == null %}
+
+            <div class="alert alert-dismissible alert-danger">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              <strong>Il n'est possible d'écrire un commentaire qu'une fois</strong>
+              <a href="{{ url('login') }}" class="alert-link">connecté</a>.
+            </div>
+
+          {% else %}
+
+            {{ form_start (ArticleCommentForm) }}
+
+            {{ form_errors (ArticleCommentForm) }}
+
+            <div class="form-group">
+              <label for="username">Message:</label>
+
+              {{ form_row(ArticleCommentForm.content, {
+                'label': false,
+                'attr': {
+                  'class': 'form-control',
+                  'placeholder': 'Message'
+                }
+              }) }}
+
+            </div>
+
+            <button type="submit" class="btn btn-success">Envoyer</button>
+
+            {{ form_end (ArticleCommentForm) }}
+
+          {% endif %}
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12 article-back">
+      <div class="row">
+        <div class="col-md-12">
+          <span class="article-title">Espace commentaires</span>
+        </div>
+      </div>
+      <hr class="hr-light">
+
+      {% for comment in comments %}
+
+        <div class="row">
+          <div class="col-md-12">
+            <span class="comment-author">Le {{ comment.created|date('d/m/Y') }} par
+              <a href="#" class="article-author">{{ comment.author.nickname }}</a>
+            </span>
+
+            {% if is_granted('ROLE_ADMIN') %}
+
+              <span class="float-right">
+                <a href="{{ url('censor', { 'id': comment.id }) }}" class="text-danger">
+                  <i class="fas fa-comment-slash"></i>&nbsp;Censurer
+                </a>
+              </span>
+
+            {% endif %}
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <textarea disabled class="comment-content">{{ comment.content }}</textarea>
+          </div>
+        </div>
+
+      {% else %}
+
+        <div class="alert alert-dismissible alert-info">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <i class="fas fa-info-circle"></i>&nbsp;<strong>Il n'y a pas encore de commentaires, soyez le 1er à en écrire un !</strong>
+        </div>
+
+      {% endfor %}
+
+    </div>
+
+  </div>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% set title = 'BetRocket | Activation' %}
+
+{% block body %}
+
+  <div class="jumbotron jumbotron-bg">
+    <h1 class="display-4">Activation de votre compte</h1>
+    <hr class="my-4">
+
+    {% if exist is defined and exist == true %}
+
+      <div class="alert alert-dismissible alert-success">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <h4 class="alert-heading success">Succès !</h4>
+        <p class="mb-0 success">Votre compte a bien été validé !</p>
+      </div>
+
+    {% elseif exist is defined and exist == false %}
+
+      <div class="alert alert-dismissible alert-danger">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <h4 class="alert-heading danger">Erreur</h4>
+        <p class="mb-0 danger">Impossible de valider le code d'activation.</p>
+      </div>
+
+    {% else %}
+
+    {% endif %}
+
+    <!--<a href="{ url('blog') }}">> Retour à l'accueil</a>-->
+    <a href="{{ url('login') }}" class="blue-link">> Retour à l'accueil</a><br/>
+    <a href="{{ url('login') }}" class="blue-link">> Me connecter</a>
+
+  </div>
+
+
+{% endblock %}

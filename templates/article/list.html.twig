@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+  <div class="jumbotron">
+
+    {% for article in articles %}
+
+      <div class="row">
+        <div class="col-md-3">
+          <a href="">
+            <img src="http://img.over-blog-kiwi.com/1/10/82/36/20190102/ob_216360_la-beaute-est-partout-dans-la-nature.jpg" alt="img" style="max-width: 240px; height: auto">
+          </a>
+        </div>
+        <div class="col-md-9">
+          <div class="row">
+            <div class="col-md-12">
+              <a href="{{ url('article',{'id':article.id}) }}">
+                <span style="font-size: 30px;">{{ article.title }}</span>
+              </a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <span>Le {{ article.created|date('d/m/Y') }} par <a href="#">{{ article.author.nickname }}</a></span>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-md-12">
+              <p>{{ article.content|slice(0, 200) }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr>
+
+    {% endfor %}
+
+  </div>
+
+{% endblock %}

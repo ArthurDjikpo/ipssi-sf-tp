@@ -2,15 +2,15 @@ version: 2
 jobs:
   build:
     docker:
-      - image: debian:stretch
+      - image: chialab/php-dev:7.2-apache
 
     steps:
       - checkout
 
       - run:
-          name: Greeting
-          command: echo Hello, world.
+          name: Install vendor
+          command: composer install
 
       - run:
-          name: Print the Current Time
-          command: date
+          name: Code Style
+          command: make test

@@ -5,13 +5,19 @@ services:
     volumes:
       - '.:/var/www/html'
       - './000-default.conf:/etc/apache2/sites-available/000-default.conf'
+    depends_on:
+      - database
+      - mailhog
   database:
     image: 'mariadb'
     environment:
-      - MYSQL_RANDOM_ROOT_PASSWORD=yes
-      - MYSQL_DATABASE=trdb
+      - MYSQL_ROOT_PASSWORD=root
   adminer:
     image: 'adminer'
     environment:
       - ADMINER_DEFAULT_SERVER=database
       - ADMINER_DESIGN=brade
+  mailhog:
+    image: 'mailhog/mailhog'
+    ports:
+      - '8025:8025'
