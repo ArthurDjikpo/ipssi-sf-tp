@@ -1,7 +1,7 @@
 # Groupe : Arthur Djikpo & Etienne Crespi & Aissatou Diop #TeamRocket
 
 # Thème: 
-[![CircleCI](https://circleci.com/gh/alborq/ipssi-sf-tp.svg?style=svg)](https://circleci.com/gh/alborq/ipssi-sf-tp) 
+[![CircleCI](https://circleci.com/gh/ArthurDjikpo/ipssi-sf-tp.svg?style=svg)](https://circleci.com/gh/ArthurDjikpo/ipssi-sf-tp) 
 
 Création d'une platform de pari eu ligne
 
